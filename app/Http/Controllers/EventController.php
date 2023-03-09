@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -13,7 +15,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $data = Event::orderBy('waktu', 'desc')->get();
+        return view('event.index', compact('data'));
     }
 
     /**
@@ -23,7 +26,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $kat = Kategori::all();
+        return view('event.create', compact('kat'));
     }
 
     /**

@@ -15,7 +15,19 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('nama');
+            $table->string('penyelenggara');
+            $table->string('banner');
+            $table->string('logo');
+            $table->string('waktu');
+            $table->string('desa');
+            $table->string('kecamatan');
+            $table->string('kota');
+            $table->string('provinsi');
+            $table->string('longitude');
+            $table->string('latitude');
+            $table->string('kategori');
+            $table->text('tempat');
         });
     }
 

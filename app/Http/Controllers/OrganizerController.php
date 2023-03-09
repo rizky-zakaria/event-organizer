@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OrganizerController extends Controller
@@ -13,7 +14,10 @@ class OrganizerController extends Controller
      */
     public function index()
     {
-        //
+        $data = User::orderBy('created_at', 'desc')
+            ->where('role', 'pelaksanan')
+            ->get();
+        return view('organizer.index', compact('data'));
     }
 
     /**
