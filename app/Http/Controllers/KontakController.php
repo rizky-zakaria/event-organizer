@@ -97,18 +97,29 @@ class KontakController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Kontak::find($id);
+        $data->delete();
+        toast('Berhasil menghapus kontak!', 'success');
+        return redirect()->back();
     }
 
     public function on($id)
     {
-        $data = Kontak::find($id);
-        $data->status = 'aktif';
-        $data->update();
-        if ($data) {
-            toast('Berhasil mengaktifkan data!', 'success');
+        $cek = Kontak::where('status', 'aktif')
+            ->where('id', '!=', $id)
+            ->get();
+        // dd();
+        if (isset($cek[0]->id)) {
+            toast('Terdapat kontak lain yang aktif', 'error');
         } else {
-            toast('Gagal mengaktifkan data!', 'error');
+            $data = Kontak::find($id);
+            $data->status = 'aktif';
+            $data->update();
+            if ($data) {
+                toast('Berhasil mengaktifkan data!', 'success');
+            } else {
+                toast('Gagal mengaktifkan data!', 'error');
+            }
         }
         return redirect()->back();
     }

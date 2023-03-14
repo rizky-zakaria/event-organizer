@@ -54,6 +54,12 @@
                                                     <a href="{{ route('kontak.on', $item->id) }}"
                                                         class="btn btn-warning btn-sm"><i class="fa fa-power-off"></i></a>
                                                 @endif
+                                                <form action="{{ route('kontak.destroy', $item->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger"><i
+                                                            class="fa fa-trash"></i></button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
