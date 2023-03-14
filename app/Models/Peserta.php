@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Peserta extends Model
 {
     use HasFactory;
+    protected $fillable = ['nama', 'alamat', 'wa', 'perusahaan', 'space_boot'];
 }

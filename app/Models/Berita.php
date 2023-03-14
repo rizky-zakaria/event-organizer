@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Berita extends Model
 {
     use HasFactory;
+    protected $fillable = ['judul', 'isi', 'gambar', 'slug', 'created_at', 'user_id'];
+    public $timestamps = false;
 }

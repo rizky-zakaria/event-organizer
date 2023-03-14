@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('pesertas', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->text('alamat');
+            $table->string('wa');
+            $table->string('perusahaan');
+            $table->string('space_boot');
             $table->timestamps();
         });
     }

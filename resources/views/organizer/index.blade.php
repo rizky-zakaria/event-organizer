@@ -4,7 +4,8 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Daftar Petugas Pelaksana</h2>
-                <a href="" class="btn btn-primary float-right"><i class="fa fa-plus-circle mr-2"></i>Pelaksana</a>
+                <a href="{{ route('pengguna.create') }}" class="btn btn-primary float-right"><i
+                        class="fa fa-plus-circle mr-2"></i>Pelaksana</a>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -28,13 +29,13 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>
-                                                <a href="" class="btn btn-sm btn-succes"><i
-                                                        class="fa fa-edit"></i>Edit</a>
+                                                <a href="" class="btn btn-sm btn-success"><i
+                                                        class="fa fa-edit"></i></a>
                                                 <form action="{{ route('pengguna.destroy', $item->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger"><i
-                                                            class="fa fa-trash"></i>Hapus</button>
+                                                            class="fa fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

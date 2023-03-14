@@ -28,6 +28,8 @@ return new class extends Migration
             $table->string('latitude');
             $table->string('kategori');
             $table->text('tempat');
+            $table->bigInteger('petugas_id');
+            $table->string('status');
         });
     }
 

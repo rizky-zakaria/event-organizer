@@ -1,6 +1,7 @@
 @extends('templates.layouts')
 @section('content')
-    <form action="{{ route('event.store') }}" method="post">
+    <form action="{{ route('event.store') }}" method="post" enctype="multipart/form-data">
+        @csrf
         <div class="card">
             <div class="card-header">
                 <button type="submit" class="btn btn-success float-right"><i class="fa fa-save"></i> Simpan</button>
@@ -64,9 +65,18 @@
                         <label for="latitude">Latitude</label>
                         <input type="text" name="latitude" id="latitude" class="form-control">
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label for="tempat">Tempat</label>
                         <textarea name="tempat" id="tempat" class="form-control"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="petugas">Petugas Pelaksana</label>
+                        <select name="petugas" id="petugas" class="form-control">
+                            <option selected disabled>Pilih</option>
+                            @foreach ($user as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>

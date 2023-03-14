@@ -9,5 +9,5 @@ class Gambar extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['gambar'];
+    protected $fillable = ['gambar', 'status'];
 }

@@ -17,7 +17,7 @@
             </li>
             <li>
                 <a href="{{ route('pengguna.index') }}">
-                    <i class="fa fa-user"></i> Pengguna
+                    <i class="fa fa-user"></i> Petugas
                 </a>
             </li>
             <li>
@@ -28,6 +28,11 @@
             <li>
                 <a href="{{ route('slide-show.index') }}">
                     <i class="fa fa-picture-o"></i> Slide Show
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('kontak.index') }}">
+                    <i class="fa fa-phone"></i> Kontak
                 </a>
             </li>
         </ul>

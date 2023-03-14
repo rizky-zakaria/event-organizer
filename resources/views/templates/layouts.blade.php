@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title>Gentelella Alela!</title>
+    <title>DisKOPUKM</title>
 
     <!-- Bootstrap -->
     <link href="{{ asset('basic/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -50,8 +50,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella
-                                Alela!</span></a>
+                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>DisKOPUKM</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -59,7 +58,7 @@
                     <!-- menu profile quick info -->
                     <div class="profile clearfix">
                         <div class="profile_pic">
-                            <img src="{{ asset('basic/production/images/img.jpg') }}" alt="..."
+                            <img src="{{ asset('uploads/img/' . Auth::user()->profile) }}" alt="..."
                                 class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
@@ -84,11 +83,14 @@
                             <li class="nav-item dropdown open" style="padding-left: 15px;">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true"
                                     id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{ asset('basic/production/images/img.jpg') }}"
+                                    <img src="{{ asset('uploads/img/' . Auth::user()->profile) }}"
                                         alt="">{{ Auth::user()->name }}
                                 </a>
                                 <div class="dropdown-menu dropdown-usermenu pull-right"
                                     aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('admin/profile') }}"><i
+                                            class="fa fa-user pull-right"></i>
+                                        Profile</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i
@@ -100,13 +102,12 @@
                                     </form>
                                 </div>
                             </li>
-
                             <li role="presentation" class="nav-item dropdown open">
-                                <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1"
+                                {{-- <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1"
                                     data-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-envelope-o"></i>
                                     <span class="badge bg-green">6</span>
-                                </a>
+                                </a> --}}
                                 <ul class="dropdown-menu list-unstyled msg_list" role="menu"
                                     aria-labelledby="navbarDropdown1">
                                     <li class="nav-item">
@@ -249,6 +250,19 @@
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('basic/build/js/custom.min.js') }}"></script>
 
+    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+    <script>
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+        };
+    </script>
+    <script>
+        CKEDITOR.replace('my-editor', options);
+    </script>
+    @include('sweetalert::alert')
 </body>
 
 </html>

@@ -15,7 +15,7 @@ class OrganizerController extends Controller
     public function index()
     {
         $data = User::orderBy('created_at', 'desc')
-            ->where('role', 'pelaksanan')
+            ->where('role', 'petugas')
             ->get();
         return view('organizer.index', compact('data'));
     }
@@ -27,7 +27,7 @@ class OrganizerController extends Controller
      */
     public function create()
     {
-        //
+        return view('organizer.create');
     }
 
     /**
@@ -38,7 +38,20 @@ class OrganizerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = User::create([
+            'name' => $request->nama,
+            'email' => $request->email,
+            'telp' => $request->notelp,
+            'password' => $request->password,
+            'role' => 'petugas',
+            'profile' => 'profile.jpg'
+        ]);
+        if ($data) {
+            toast('Berhasil menambahkan data!', 'success');
+        } else {
+            toast('Gagal menambahkan data!', 'error');
+        }
+        return redirect(route('pengguna.index'));
     }
 
     /**
@@ -83,6 +96,13 @@ class OrganizerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = User::find($id);
+        $post->delete();
+        if ($post) {
+            toast('Berhasil menghapus data!', 'success');
+        } else {
+            toast('Gagal menghapus data!', 'error');
+        }
+        return redirect(route('pengguna.index'));
     }
 }

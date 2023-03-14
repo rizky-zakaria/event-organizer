@@ -4,13 +4,11 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Daftar Gambar</h2>
-                <a href="" class="btn btn-primary float-right"><i class="fa fa-plus-circle mr-2"></i>Event</a>
+                <a href="{{ route('slide-show.create') }}" class="btn btn-primary float-right"><i
+                        class="fa fa-plus-circle mr-2"></i>Slide</a>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <div class="container">
-                    <img src="{{ asset('') }}" width="220px">
-                </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive text-center">
@@ -18,89 +16,45 @@
                                 cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>First name</th>
-                                        <th>Last name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
-                                        <th>Extn.</th>
-                                        <th>E-mail</th>
+                                        <th>Nomor</th>
+                                        <th>Gambars</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Hermione</td>
-                                        <td>Butler</td>
-                                        <td>Regional Director</td>
-                                        <td>London</td>
-                                        <td>47</td>
-                                        <td>2011/03/21</td>
-                                        <td>$356,250</td>
-                                        <td>1016</td>
-                                        <td>h.butler@datatables.net</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lael</td>
-                                        <td>Greer</td>
-                                        <td>Systems Administrator</td>
-                                        <td>London</td>
-                                        <td>21</td>
-                                        <td>2009/02/27</td>
-                                        <td>$103,500</td>
-                                        <td>6733</td>
-                                        <td>l.greer@datatables.net</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jonas</td>
-                                        <td>Alexander</td>
-                                        <td>Developer</td>
-                                        <td>San Francisco</td>
-                                        <td>30</td>
-                                        <td>2010/07/14</td>
-                                        <td>$86,500</td>
-                                        <td>8196</td>
-                                        <td>j.alexander@datatables.net</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Shad</td>
-                                        <td>Decker</td>
-                                        <td>Regional Director</td>
-                                        <td>Edinburgh</td>
-                                        <td>51</td>
-                                        <td>2008/11/13</td>
-                                        <td>$183,000</td>
-                                        <td>6373</td>
-                                        <td>s.decker@datatables.net</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Michael</td>
-                                        <td>Bruce</td>
-                                        <td>Javascript Developer</td>
-                                        <td>Singapore</td>
-                                        <td>29</td>
-                                        <td>2011/06/27</td>
-                                        <td>$183,000</td>
-                                        <td>5384</td>
-                                        <td>m.bruce@datatables.net</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Donna</td>
-                                        <td>Snider</td>
-                                        <td>Customer Support</td>
-                                        <td>New York</td>
-                                        <td>27</td>
-                                        <td>2011/01/25</td>
-                                        <td>$112,000</td>
-                                        <td>4226</td>
-                                        <td>d.snider@datatables.net</td>
-                                    </tr>
+                                    @foreach ($img as $item)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>
+                                                <img src="{{ asset('uploads/img/' . $item->gambar) }}" alt=""
+                                                    width="150px">
+                                            </td>
+                                            <td>
+                                                @if ($item->status === 'aktif')
+                                                    <span class="badge badge-success">
+                                                        {{ $item->status }}
+                                                    </span>
+                                                @else
+                                                    <span class="badge badge-warning">
+                                                        {{ $item->status }}
+                                                    </span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('slide-show.edit', $item->id) }}"
+                                                    class="btn btn-sm btn-primary"><i class="fa fa-power-off"></i></a>
+                                                <form action="{{ route('slide-show.destroy', $item->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger"><i
+                                                            class="fa fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
-                            </table> --}}
-                            <span>
-                                Comming Soon
-                            </span>
+                            </table>
                         </div>
                     </div>
                 </div>
