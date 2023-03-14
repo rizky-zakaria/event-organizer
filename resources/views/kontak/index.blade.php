@@ -4,7 +4,8 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Daftar Kontak</h2>
-                <a href="" class="btn btn-primary float-right"><i class="fa fa-plus-circle mr-2"></i>Kontak</a>
+                <a href="{{ route('kontak.create') }}" class="btn btn-primary float-right"><i
+                        class="fa fa-plus-circle mr-2"></i>Kontak</a>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -38,9 +39,21 @@
                                             <td>{{ $item->facebook }}</td>
                                             <td>{{ $item->twiter }}</td>
                                             <td>{{ $item->instagram }}</td>
-                                            <td>{{ $item->status }}</td>
                                             <td>
-                                                <a href="" class="btn btn-secondary btn-sm">no action</a>
+                                                @if ($item->status === 'aktif')
+                                                    <span class="badge badge-success">{{ $item->status }}</span>
+                                                @else
+                                                    <span class="badge badge-danger">{{ $item->status }}</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($item->status === 'aktif')
+                                                    <a href="{{ route('kontak.off', $item->id) }}"
+                                                        class="btn btn-warning btn-sm"><i class="fa fa-power-off"></i></a>
+                                                @else
+                                                    <a href="{{ route('kontak.on', $item->id) }}"
+                                                        class="btn btn-warning btn-sm"><i class="fa fa-power-off"></i></a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

@@ -25,7 +25,7 @@ class KontakController extends Controller
      */
     public function create()
     {
-        //
+        return view('kontak.create');
     }
 
     /**
@@ -36,7 +36,23 @@ class KontakController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = Kontak::create([
+            'wa' => $request->wa,
+            'telpon' => $request->telp,
+            'email' => $request->email,
+            'facebook' => $request->fb,
+            'twiter' => $request->tweeter,
+            'instagram' => $request->ig,
+            'telegram' => $request->tg,
+            'status' => 'non-aktif'
+        ]);
+
+        if ($data) {
+            toast('Berhasil menambahkan data!', 'success');
+        } else {
+            toast('Gagal menambahkan data!', 'error');
+        }
+        return redirect()->back();
     }
 
     /**
@@ -82,5 +98,31 @@ class KontakController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function on($id)
+    {
+        $data = Kontak::find($id);
+        $data->status = 'aktif';
+        $data->update();
+        if ($data) {
+            toast('Berhasil mengaktifkan data!', 'success');
+        } else {
+            toast('Gagal mengaktifkan data!', 'error');
+        }
+        return redirect()->back();
+    }
+
+    public function off($id)
+    {
+        $data = Kontak::find($id);
+        $data->status = 'non-aktif';
+        $data->update();
+        if ($data) {
+            toast('Berhasil menon-aktifkan data!', 'success');
+        } else {
+            toast('Gagal menon-aktifkan data!', 'error');
+        }
+        return redirect()->back();
     }
 }

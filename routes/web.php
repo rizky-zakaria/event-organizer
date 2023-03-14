@@ -56,6 +56,8 @@ Route::middleware(['auth'], ['register' => false])->group(function () {
     Route::post('admin/profile/set-password', [HomeController::class, 'setPassword'])->name('home.set-password');
     Route::post('admin/profile/set-profile', [HomeController::class, 'setProfile'])->name('home.set-profile');
     Route::post('admin/profile/set-gambar', [HomeController::class, 'setGambar'])->name('home.set-gambar');
+    Route::get('admin/kontak/on/{id}', [KontakController::class, 'on'])->name('kontak.on');
+    Route::get('admin/kontak/off/{id}', [KontakController::class, 'off'])->name('kontak.off');
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
